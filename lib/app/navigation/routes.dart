@@ -2,7 +2,7 @@ import 'package:google_doc/app/navigation/transition_page.dart';
 import 'package:google_doc/components/auth/auth.dart';
 import 'package:routemaster/routemaster.dart';
 
-// import 'package:google_doc/components/document/document.dart';
+import 'package:google_doc/components/document/document.dart';
 
 const _login = '/login';
 const _register = '/register';
@@ -28,3 +28,18 @@ final routesLoggedOut = RouteMap(
   },
 );
 
+final routesLoggedIn = RouteMap(
+  onUnknownRoute: (_) => const Redirect(_newDocument),
+  routes: {
+    _newDocument: (_) => const TransitionPage(child: NewDocumentPage()),
+    '$_document/:id': (info) {
+      final docId = info.pathParameters['id'];
+      if (docId == null) {
+        return const Redirect(_newDocument);
+      }
+      return TransitionPage(
+        child: DocumentPage(documentId: docId),
+      );
+    },
+  },
+);
