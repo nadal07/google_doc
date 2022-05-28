@@ -1,4 +1,5 @@
 import 'package:appwrite/appwrite.dart';
+import 'package:appwrite/models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_doc/app/constants.dart';
 import 'package:google_doc/app/state/state.dart';
@@ -11,10 +12,11 @@ abstract class Dependency {
   static Provider<Realtime> get realtime => _realtimeProvider;
 }
 
+
 abstract class Repository {
   static Provider<AuthRepository> get auth => AuthRepository.provider;
-  // static Provider<DatabaseRepository> get database =>
-  //     DatabaseRepository.provider;
+   static Provider<DatabaseRepository> get database =>
+      DatabaseRepository.provider;
 }
 
 abstract class AppState {

@@ -7,11 +7,14 @@ class DocumentPageData extends Equatable {
   final String id;
   final String title;
   final Delta content;
+  final String owner;
 
   const DocumentPageData({
     required this.id,
     required this.title,
     required this.content,
+    required this.owner,
+
   });
 
   Map<String, dynamic> toMap() {
@@ -19,6 +22,7 @@ class DocumentPageData extends Equatable {
       '\$id': id,
       'title': title,
       'content': jsonEncode(content.toJson()),
+      'owner': owner,
     };
   }
 
@@ -29,6 +33,7 @@ class DocumentPageData extends Equatable {
       id: map['\$id'],
       title: map['title'] ?? '',
       content: Delta.fromJson(contentJson),
+      owner: map['owner'],
     );
   }
 
@@ -44,11 +49,13 @@ class DocumentPageData extends Equatable {
     String? id,
     String? title,
     Delta? content,
+    String? owner,
   }) {
     return DocumentPageData(
       id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
+      owner: owner ?? this.owner,
     );
   }
 }
